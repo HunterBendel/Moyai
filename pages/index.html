@@ -1,1 +1,50 @@
 <!-- The main HTML file for our website's homepage -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moyai App - Discover Your Next Favorite Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Moyai App</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="search">
+            <h2>Find Your Game</h2>
+            <input type="text" id="game-search" placeholder="Search for games...">
+            <button onclick="searchGames()">Search</button>
+        </section>
+
+        <section id="recommendations">
+            <h2>Recommended Games</h2>
+            <div id="recommended-games">
+                <!-- Recommended games will be displayed here -->
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>Latest Gaming News</h2>
+            <div id="gaming-news">
+                <!-- Latest gaming news will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Moyai App. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
