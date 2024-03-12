@@ -24,6 +24,23 @@ function displayRecommendedGames() {
     });
 }
 
+// Function to display search results on a single page
+function displaySearchResults(results) {
+    const resultsContainer = document.getElementById("search-results");
+    resultsContainer.innerHTML = ""; // Clear previous results
+
+    results.forEach(game => {
+        const gameElement = document.createElement("div");
+        gameElement.classList.add("game-result");
+        gameElement.innerHTML = `
+            <h3>${game.name}</h3>
+            <p>Genre: ${game.genre}</p>
+            <p>${game.description}</p>
+        `;
+        resultsContainer.appendChild(gameElement);
+    });
+}
+
 // Call the function to display recommended games on page load
 window.onload = function() {
     displayRecommendedGames();
