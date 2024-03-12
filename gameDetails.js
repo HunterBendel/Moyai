@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'; // Import the fetch function
 // Function to fetch game details from an API
 function fetchGameDetails(gameId) {
     // Example API endpoint (replace with your actual endpoint)
