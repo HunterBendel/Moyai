@@ -38,7 +38,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
     first = db.Column(db.String(80))
-    last = db.Column(db.String(80))
+    last = db.Column(db.String(80)) 
 
 
 @login_manager.user_loader
