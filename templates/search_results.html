@@ -1,0 +1,61 @@
+<head>
+    <div class="navbar">
+      <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+      <a href="settings"><i class="fa fa-fw fa-gears"></i> Settings</a>
+      <form action="/search" method="get">
+        <div class="search-container">
+            <input type="text" placeholder="Search for games..." name="search_query">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+      <a class="split" href="logout"><i class="fa fa-fw fa-sign-out"></i> Log out</a>
+      <a class="splitb">Welcome, {{ name }}</a>
+  </div>
+  
+</head>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Search Results for "{{ search_query }}"</h2>
+{% if games %}
+    <div class="games-container">
+        {% for game in games %}
+            <div class="game">
+                <h3>{{ game[1] }}</h3> <!-- Assuming game[1] is the name of the game -->
+                <img src="{{ game[2] }}" alt="{{ game[1] }} cover image"> <!-- Assuming game[2] is the cover image URL -->
+                <!-- Add more game details as needed -->
+                <a href="/game/{{ game[0] }}">View Details</a> <!-- Assuming game[0] is the game ID -->
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No games found.</p>
+{% endif %}
+{% endblock %}
+
+{% block styles %}
+<style>
+    .games-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .game {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+        width: 200px;
+    }
+
+    .game img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}

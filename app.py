@@ -133,6 +133,20 @@ def page_change_password():
                            user=dict(username=current_user.username),
                            )
 
+@app.route('/search')
+def search():
+    search_query = request.args.get('search_query', '')  # Get the search query from the request
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Query the database for games that match the search query
+    cursor.execute("SELECT * FROM game WHERE name LIKE ?", ('%' + search_query + '%',))
+    games = cursor.fetchall()
+
+    conn.close()
+    
+    return render_template('search_results.html', games=games, name=current_user.username, search_query=search_query)
+
 @app.route('/about')
 @login_required
 def about():
