@@ -42,4 +42,4 @@ def lowest_price_history():
                 print(f'Lowest Price: {lowest_price}')
 
 if __name__ == '__main__':
-    lowest_price_history()
+    lowest_price_history() 
