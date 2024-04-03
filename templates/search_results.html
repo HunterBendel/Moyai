@@ -5,57 +5,31 @@
       <a href="settings"><i class="fa fa-fw fa-gears"></i> Settings</a>
       <form action="/search" method="get">
         <div class="search-container">
-            <input type="text" placeholder="Search for games..." name="search_query">
+            <input type="text" placeholder="Search for games..." name="query">
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
       </form>
       <a class="split" href="logout"><i class="fa fa-fw fa-sign-out"></i> Log out</a>
       <a class="splitb">Welcome, {{ name }}</a>
   </div>
-  
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Search Results for "{{ search_query }}"</h2>
+<h2>Search Results for "{{ query }}"</h2>
 {% if games %}
-    <div class="games-container">
+    <div class="games-grid">
         {% for game in games %}
             <div class="game">
-                <h3>{{ game[1] }}</h3> <!-- Assuming game[1] is the name of the game -->
-                <img src="{{ game[2] }}" alt="{{ game[1] }} cover image"> <!-- Assuming game[2] is the cover image URL -->
-                <!-- Add more game details as needed -->
-                <a href="/game/{{ game[0] }}">View Details</a> <!-- Assuming game[0] is the game ID -->
+                <h3>{{ game.name }}</h3>
+                <img src="{{ game.cover_image_url }}" alt="{{ game.name }} cover image">
+                <a href="/game/{{ game.id }}">View Details</a>
             </div>
         {% endfor %}
     </div>
 {% else %}
     <p>No games found.</p>
 {% endif %}
-{% endblock %}
-
-{% block styles %}
-<style>
-    .games-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
-
-    .game {
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        text-align: center;
-        width: 200px;
-    }
-
-    .game img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-    }
-</style>
 {% endblock %}
