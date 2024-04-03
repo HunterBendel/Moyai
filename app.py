@@ -14,6 +14,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_change_password import ChangePassword, ChangePasswordForm, SetPasswordForm
 from werkzeug.utils import secure_filename
+from PriceHistory import lowest_price_history
+from GamePopular import game_popular
 
 app = Flask(__name__)  # Create application object
 app.config['SECRET_KEY'] = 'This is my super secret key'
@@ -152,7 +154,20 @@ def game_details():
     game_id = request.args.get('game_id')
     game_name = request.args.get('game_name')
     cover_image_url = request.args.get('cover_image_url')
-    return render_template('game-details.html', game_id=game_id, game_name=game_name, cover_image_url=cover_image_url, name=current_user.username)
+    current_price, highest_price, lowest_price = lowest_price_history(game_name)
+    total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
+    return render_template('game-details.html', 
+                           game_id=game_id, 
+                           game_name=game_name, 
+                           cover_image_url=cover_image_url, 
+                           name=current_user.username,
+                           current_price=current_price,
+                           highest_price=highest_price,
+                           lowest_price=lowest_price,
+                           total_ingame=total_ingame, 
+                           total_upvote=total_upvote, 
+                           total_downvote=total_downvote, 
+                           upvote_percentage=upvote_percentage)
 
 @app.route('/about')
 @login_required

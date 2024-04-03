@@ -4,8 +4,8 @@ import time
 
 #Video used: https://youtu.be/XVv6mJpFOb0?si=MFGV69vfcdMvNw6P
 
-def game_popular():
-    game_name = input("Please enter the name of the game that you want to find the popularity for: ") #SPELLING AND CAPITALIZATION MATTERS
+def game_popular(game_name):
+    #game_name = input("Please enter the name of the game that you want to find the popularity for: ") #SPELLING AND CAPITALIZATION MATTERS
     app_id = None
     # Lines 11 to 23 are just to retrieve the game ID so we can use it for the webscraping
     api_data = requests.get('https://api.steampowered.com/ISteamApps/GetAppList/v2/')
@@ -41,15 +41,7 @@ def game_popular():
         total_downvote_format = float(total_downvote.replace(",", ""))
 
         upvote_percentage = round((total_upvote_format / (total_upvote_format + total_downvote_format)*100), 2)
-        print(round((upvote_percentage * 100), 2))
+        str_upvote_percentage = str(upvote_percentage) + "%"
+        #print(round((upvote_percentage * 100), 2))
 
-        return total_ingame, total_upvote, total_downvote, upvote_percentage
-
-if __name__ == '__main__':
-
-    total_ingame, total_upvote, total_downvote, upvote_percent = game_popular()
-
-    print("Total players online: " + str(total_ingame))
-    print("Total upvotes: " + str(total_upvote))
-    print("Total downvotes: " + str(total_downvote))
-    print("Percentage of positive votes " + str(upvote_percent) + "%")
+        return total_ingame, total_upvote, total_downvote, str_upvote_percentage
