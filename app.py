@@ -147,6 +147,12 @@ def search():
     
     return render_template('search_results.html', games=games, name=current_user.username, query=query)
 
+@app.route('/game_details')
+def game_details():
+    game_id = request.args.get('game_id')
+    game_name = request.args.get('game_name')
+    cover_image_url = request.args.get('cover_image_url')
+    return render_template('game-details.html', game_id=game_id, game_name=game_name, cover_image_url=cover_image_url, name=current_user.username)
 
 @app.route('/about')
 @login_required

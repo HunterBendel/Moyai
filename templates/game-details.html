@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Details - Moyai App</title>
-    <link rel="stylesheet" href="game-details.css">
+    <div class="navbar">
+      <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+      <a href="settings"><i class="fa fa-fw fa-gears"></i> Settings</a>
+      <form action="/search" method="get">
+        <div class="search-container">
+            <input type="text" placeholder="Search for games..." name="query">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+      <a class="split" href="logout"><i class="fa fa-fw fa-sign-out"></i> Log out</a>
+      <a class="splitb">Welcome, {{ name }}</a>
+  </div>
+  <title>Game Details</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <header>
-        <h1>Game Details</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
     <main>
         <section id="game-info">
-            <h2>Game Name</h2>
-            <img src="game-image.jpg" alt="Game Image" id="game-image">
+            <h2>{{ game_name }}</h2>
+            <img src="{{ cover_image_url }}" alt="{{ game_name }} cover image">
             <p><strong>Photos and Videos:</strong> <a href="#">Watch Trailer</a></p>
             <p><strong>Description:</strong> This is a description of the game.</p>
             <p><strong>Tags:</strong> Open world, Multiplayer</p>
@@ -36,12 +40,6 @@
             <p><strong>System Requirements:</strong> Minimum: 8GB RAM, Recommended: 16GB RAM</p>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2024 Moyai App. All rights reserved.</p>
-    </footer>
-
-    <script src="gameDetails.js"></script>
 </body>
 </html>
-
+{% endblock %}
