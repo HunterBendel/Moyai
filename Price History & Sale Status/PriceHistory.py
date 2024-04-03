@@ -37,9 +37,13 @@ def lowest_price_history():
                 current_price = prices[0].text.strip()
                 highest_price = prices[1].text.strip()
                 lowest_price = prices[2].text.strip()
-                print(f'Current Price: {current_price}')
-                print(f'Highest Price: {highest_price}')
-                print(f'Lowest Price: {lowest_price}')
+                # print(f'Current Price: {current_price}')
+                # print(f'Highest Price: {highest_price}')
+                # print(f'Lowest Price: {lowest_price}')
+                return current_price, highest_price, lowest_price
 
 if __name__ == '__main__':
-    lowest_price_history() 
+    cur, high, low = lowest_price_history()
+    print(f'Current Price: {cur}')
+    print(f'Highest Price: {high}')
+    print(f'Lowest Price: {low}')
