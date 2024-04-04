@@ -14,6 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_change_password import ChangePassword, ChangePasswordForm, SetPasswordForm
 from werkzeug.utils import secure_filename
+from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
 
@@ -156,6 +157,7 @@ def game_details():
     cover_image_url = request.args.get('cover_image_url')
     current_price, highest_price, lowest_price = lowest_price_history(game_name)
     total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
+    ign_score = get_ign_score(game_name)
     return render_template('game-details.html', 
                            game_id=game_id, 
                            game_name=game_name, 
@@ -167,7 +169,8 @@ def game_details():
                            total_ingame=total_ingame, 
                            total_upvote=total_upvote, 
                            total_downvote=total_downvote, 
-                           upvote_percentage=upvote_percentage)
+                           upvote_percentage=upvote_percentage,
+                           ign_score=ign_score)
 
 @app.route('/about')
 @login_required
