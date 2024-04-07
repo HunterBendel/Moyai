@@ -12,12 +12,12 @@ def game_popular(game_name):
                 app_id = app["appid"]
                 break
         if app_id:
-            print(f"The AppID for '{game_name}' is: {app_id}")
+            print(f"GamePopular: The AppID for '{game_name}' is: {app_id}")
         else:
-            print(f"Game '{game_name}' not found.")
+            print(f"GamePopular: Game '{game_name}' not found.")
             return "Data not found", "Data not found", "Data not found", "Data not found"
     else:
-        print(f"Failed to retrieve data: {api_data.status_code}")
+        print(f"GamePopular: Failed to retrieve data: {api_data.status_code}")
         return "Data not found", "Data not found", "Data not found", "Data not found"
 
     if app_id:

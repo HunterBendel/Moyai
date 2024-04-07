@@ -1,7 +1,5 @@
-import json
 import os
 import sqlite3
-import base64
 from io import BytesIO
 from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file
 from flask_bootstrap import Bootstrap
@@ -9,7 +7,7 @@ from flask_wtf import FlaskForm
 from datetime import datetime
 from wtforms import StringField, PasswordField, BooleanField, FileField
 from wtforms.validators import InputRequired, Email, Length #if you didnt type something in the field it will alert, (there's validators for email addresses)
-from flask_sqlalchemy import SQLAlchemy #database
+from flask_sqlalchemy import SQLAlchemy, session #database
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_change_password import ChangePassword, ChangePasswordForm, SetPasswordForm
@@ -17,6 +15,7 @@ from werkzeug.utils import secure_filename
 from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
+from youtube_embed import get_youtube_trailer_url
 
 app = Flask(__name__)  # Create application object
 app.config['SECRET_KEY'] = 'This is my super secret key'
@@ -46,7 +45,7 @@ class User(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
-	return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))
 
 class LoginForm(FlaskForm):
 	username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
@@ -155,6 +154,7 @@ def game_details():
     game_id = request.args.get('game_id')
     game_name = request.args.get('game_name')
     cover_image_url = request.args.get('cover_image_url')
+    youtube_trailer_url = get_youtube_trailer_url(game_name, 'AIzaSyDhDfW13uJDS1DRgSplLwDLTbvLF_x3New')
     current_price, highest_price, lowest_price = lowest_price_history(game_name)
     total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
     ign_score = get_ign_score(game_name)
@@ -170,7 +170,8 @@ def game_details():
                            total_upvote=total_upvote, 
                            total_downvote=total_downvote, 
                            upvote_percentage=upvote_percentage,
-                           ign_score=ign_score)
+                           ign_score=ign_score,
+                           youtube_trailer_url=youtube_trailer_url,)
 
 @app.route('/about')
 @login_required
