@@ -4,7 +4,7 @@
   <div class="navbar">
     <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
     <a class="active" href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
-    <a href="settings"><i class="fa fa-fw fa-gears"></i> Settings</a>
+    <a href="about"><i class="fa fa-info-circle"></i> About</a>
     <form action="/search" method="get">
       <div class="search-container">
           <input type="text" placeholder="Search for games..." name="query">
@@ -28,5 +28,6 @@
 <strong>Username: </strong>{{ current_user.username}}<br/>
 <strong>User Id: </strong>{{ current_user.id}}<br/>
 <strong>Email: </strong>{{ current_user.email}}<br/>
+<a class="btn btn-lg btn-primary btn-block" href="change_password" role="button">Change password</a>
 
 {% endblock %} 

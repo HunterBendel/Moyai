@@ -73,10 +73,10 @@ def home():
 def profile():
     return render_template('profile_page.html', name=current_user.username)
 
-@app.route('/settings')
+@app.route('/about')
 @login_required
 def settings():
-    return render_template('settings_page.html', name=current_user.username)
+    return render_template('about.html', name=current_user.username)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -171,13 +171,7 @@ def game_details():
                            total_downvote=total_downvote, 
                            upvote_percentage=upvote_percentage,
                            ign_score=ign_score,
-                           youtube_trailer_url=youtube_trailer_url,)
-
-@app.route('/about')
-@login_required
-def about():
-    return render_template('about.html', name=current_user.username)
-
+                           youtube_trailer_url=youtube_trailer_url)
 
 @app.route('/logout')
 @login_required
