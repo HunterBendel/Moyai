@@ -5,6 +5,7 @@
     <a class="active" href="home"><i class="fa fa-fw fa-home"></i> Home</a>
     <a href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
     <a href="about"><i class="fa fa-info-circle"></i> About</a>
+    <span class="moyai-title">Moyai</span> <!-- Changed to span for non-clickable title -->
     <form action="/search" method="get">
       <div class="search-container">
           <input type="text" placeholder="Search for games..." name="query">
@@ -37,8 +38,7 @@
               <!-- Latest gaming news will be displayed here -->
           </div>
       </section>
-  </main>
-  <script type='text/javascript' src="{{url_for('static', filename='js/script.js')}}"></script>
+    </main>
 </body>
 
 {% endblock %}

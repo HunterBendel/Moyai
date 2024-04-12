@@ -5,8 +5,9 @@
     <style>
     .navbar {
       width: 100%;
-      background-color: #555;
+      background-color: #333;
       overflow: auto;
+      position: relative; /* Added for positioning the title */
     }
 
     .navbar a {
@@ -14,7 +15,7 @@
       padding: 12px;
       color: white;
       text-decoration: none;
-      font-size: 17px;
+      font-size: 20px;
     }
 
     .navbar a:hover {
@@ -23,13 +24,13 @@
 
     .navbar a.split {
       float: right;
-      background-color: #555;
+      background-color: #333;
       color: white;
     }
 
     .navbar a.splitb {
       float: right;
-      background-color: #555;
+      background-color: #333;
       color: white;
     }
 
@@ -39,6 +40,16 @@
 
     .active {
       background-color: #04AA6D;
+    }
+
+    .moyai-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 50px; /* Adjust for desired size */
+      font-weight: bold; /* Make it bold */
+      color: white; /* Set the color */
+      text-decoration: none; /* Remove underline */
     }
 
     .search-container {
