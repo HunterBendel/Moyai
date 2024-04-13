@@ -38,15 +38,27 @@
             <p><strong>Developer:</strong> Placeholder Developer</p>
             <p><strong>Publisher:</strong> Placeholder Publisher</p>
             <p><strong>Release Date:</strong> Placeholder Release Date</p>
-            <p><strong>Current Price:</strong> {{ current_price }}</p>
+            <p><strong>Current Retail Price:</strong> {{ current_price }}</p>
             <p><strong>Highest Historical Price:</strong> {{ highest_price }}</p>
             <p><strong>Lowest Historical Price:</strong> {{ lowest_price }}</p>
+            <section id="game-vendors">
+                <h3>Current Deals</h3>
+                {% if deals %}
+                    <ul>
+                        {% for deal in deals %}
+                            <li><a href="{{ deal.dealUrl }}" target="_blank">{{ deal.store }}</a> - ${{ deal.salePrice }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No active deals! Check back tomorrow!</p>
+                {% endif %}
+            </section>
             <p><strong>Current Number of In-Game Players:</strong> {{ total_ingame }}</p>
             <p><strong>Upvotes:</strong> {{ total_upvote }}</p>
             <p><strong>Downvotes:</strong> {{ total_downvote }}</p>
             <p><strong>This percentage of players love the game:</strong> {{ upvote_percentage }}</p>
             <p><strong>IGN Score: {{ ign_score }}</p>
-            <p><strong>Latest Updates:</strong> <a href="#">View Updates</a></p>
+            <p><strong>Latest Updates:</strong> Placeholder news</p>
             <p><strong>Minimum System Requirements:</strong></p>
                 <p>Placeholder Requirements</p>
             <p><strong>Recommended System Requirements:</strong></p>

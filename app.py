@@ -15,6 +15,7 @@ from werkzeug.utils import secure_filename
 from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
+from vendors import get_game_deals
 from youtube_embed import get_youtube_trailer_url
 
 app = Flask(__name__)  # Create application object
@@ -158,6 +159,7 @@ def game_details():
     current_price, highest_price, lowest_price = lowest_price_history(game_name)
     total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
     ign_score = get_ign_score(game_name)
+    deals = get_game_deals(game_name)
     return render_template('game-details.html', 
                            game_id=game_id, 
                            game_name=game_name, 
@@ -171,7 +173,8 @@ def game_details():
                            total_downvote=total_downvote, 
                            upvote_percentage=upvote_percentage,
                            ign_score=ign_score,
-                           youtube_trailer_url=youtube_trailer_url)
+                           youtube_trailer_url=youtube_trailer_url,
+                           deals=deals)
 
 @app.route('/logout')
 @login_required

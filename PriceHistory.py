@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import time
 
 def lowest_price_history(game_name):
     app_id = None
