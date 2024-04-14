@@ -5,7 +5,8 @@
       <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
       <a href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
       <a href="about"><i class="fa fa-info-circle"></i> About</a>
-      <span class="moyai-title">Moyai</span> <!-- Changed to span for non-clickable title -->
+      <a href="myGames"><i class="fa fa-book"></i> My Games</a>
+      <span class="moyai-title">Moyai</span>
       <form action="/search" method="get">
         <div class="search-container">
             <input type="text" placeholder="Search for games..." name="query">
@@ -26,6 +27,15 @@
     <main>
         <section id="game-info">
             <h2>{{ game_name }}</h2>
+            {% if game_in_library %}
+                <form action="{{ url_for('remove_from_library', game_id=game.id) }}" method="post">
+                    <button type="submit">Remove from Library</button>
+                </form>
+            {% else %}
+                <form action="{{ url_for('add_to_library', game_id=game.id) }}" method="post">
+                    <button type="submit">Add to Library</button>
+                </form>
+            {% endif %}
             <img src="{{ cover_image_url }}" alt="{{ game_name }} cover image">
             <p><strong>Trailer:</strong></p>
             {% if youtube_trailer_url %}

@@ -1,17 +1,15 @@
 import os
 import sqlite3
-from io import BytesIO
-from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file
+from flask import Flask, jsonify, render_template, redirect, url_for, request, flash
+from flask import session as flask_session
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from datetime import datetime
-from wtforms import StringField, PasswordField, BooleanField, FileField
+from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length #if you didnt type something in the field it will alert, (there's validators for email addresses)
 from flask_sqlalchemy import SQLAlchemy, session #database
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_change_password import ChangePassword, ChangePasswordForm, SetPasswordForm
-from werkzeug.utils import secure_filename
+from flask_change_password import ChangePassword, ChangePasswordForm
 from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
@@ -43,6 +41,16 @@ class User(UserMixin, db.Model):
     first = db.Column(db.String(80))
     last = db.Column(db.String(80)) 
 
+class UserGame(db.Model):
+    __tablename__ = 'user_game'
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    game_id = db.Column(db.Integer, db.ForeignKey('game.id'), primary_key=True)
+
+class Game(db.Model):
+    __tablename__ = 'game'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    cover_image_url = db.Column(db.String(255), nullable=True)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -153,28 +161,85 @@ def search():
 @app.route('/game_details')
 def game_details():
     game_id = request.args.get('game_id')
-    game_name = request.args.get('game_name')
+    user_id = current_user.id
+    game_in_library = UserGame.query.filter_by(user_id=user_id, game_id=game_id).first() is not None
+    game_name = request.args.get('game_name', None)
     cover_image_url = request.args.get('cover_image_url')
+    if not game_name:  # Handling cases where game_name is None
+        game_details = db.session.query(Game).filter_by(id=game_id).first()
+        if game_details:
+            game_name = game_details.name  # Use name from the database if not passed as parameter
+            cover_image_url = game_details.cover_image_url  # Similarly for the cover image URL
+        else:
+            return 'Game not found', 404  # Or redirect to another appropriate error handling page
     youtube_trailer_url = get_youtube_trailer_url(game_name, 'AIzaSyDhDfW13uJDS1DRgSplLwDLTbvLF_x3New')
     current_price, highest_price, lowest_price = lowest_price_history(game_name)
     total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
     ign_score = get_ign_score(game_name)
     deals = get_game_deals(game_name)
-    return render_template('game-details.html', 
-                           game_id=game_id, 
-                           game_name=game_name, 
-                           cover_image_url=cover_image_url, 
-                           name=current_user.username,
-                           current_price=current_price,
-                           highest_price=highest_price,
-                           lowest_price=lowest_price,
-                           total_ingame=total_ingame, 
-                           total_upvote=total_upvote, 
-                           total_downvote=total_downvote, 
-                           upvote_percentage=upvote_percentage,
-                           ign_score=ign_score,
-                           youtube_trailer_url=youtube_trailer_url,
-                           deals=deals)
+    game_details = db.session.query(Game).filter_by(id=game_id).first()
+    if game_details:
+        return render_template('game-details.html', 
+                                game_id=game_id, 
+                                game_name=game_name, 
+                                cover_image_url=cover_image_url, 
+                                name=current_user.username,
+                                current_price=current_price,
+                                highest_price=highest_price,
+                                lowest_price=lowest_price,
+                                total_ingame=total_ingame, 
+                                total_upvote=total_upvote, 
+                                total_downvote=total_downvote, 
+                                upvote_percentage=upvote_percentage,
+                                ign_score=ign_score,
+                                youtube_trailer_url=youtube_trailer_url,
+                                deals=deals,
+                                game=game_details,
+                                game_in_library=game_in_library)  # Add this to pass the library status to the template
+    else:
+        return 'Game not found', 404
+
+@app.route('/add_to_library/<int:game_id>', methods=['POST'])
+def add_to_library(game_id):
+    user_id = current_user.id
+    new_entry = UserGame(user_id=user_id, game_id=game_id)
+    db.session.add(new_entry)
+    try:
+        db.session.commit()
+        game_name = request.args.get('game_name')
+        cover_image_url = request.args.get('cover_image_url')
+        # Redirect with necessary details
+        return redirect(url_for('game_details', game_id=game_id, game_name=game_name, cover_image_url=cover_image_url))
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': 'Failed to add game to library'})
+
+@app.route('/remove_from_library/<int:game_id>', methods=['POST'])
+def remove_from_library(game_id):
+    user_id = current_user.id
+    # Assuming UserGame is the model for the user_game table
+    game_entry = UserGame.query.filter_by(user_id=user_id, game_id=game_id).first()
+    if game_entry:
+        db.session.delete(game_entry)
+        try:
+            db.session.commit()
+            game_name = request.args.get('name')
+            cover_image_url = request.args.get('cover_image_url')
+            # Redirect with necessary details
+            return redirect(url_for('game_details', game_id=game_id, game_name=game_name, cover_image_url=cover_image_url))
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'success': False, 'message': 'Failed to remove game from library'})
+    else:
+        return jsonify({'success': False, 'message': 'Game not found in library'})
+
+@app.route('/myGames')
+def myGames():
+    user_id = current_user.id
+    # Fetch games from the user_game association table joined with the game table
+    user_games = db.session.query(Game).join(UserGame, UserGame.game_id == Game.id).filter(UserGame.user_id == user_id).all()
+    return render_template('myGames.html', games=user_games, name=current_user.username)
+
 
 @app.route('/logout')
 @login_required
