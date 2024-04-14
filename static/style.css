@@ -158,11 +158,17 @@ body {
     .button-container {
         margin-top: 50px; 
     }
+    .button-container {
+        display: inline;
+    }
 }
 
 @media (max-height: 384px) {
     .button-container {
         margin-top: 0px; 
+    }
+    .button-container {
+        display: inline;
     }
 }
 
