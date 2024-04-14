@@ -47,7 +47,7 @@ body {
     padding: 0;
     min-height: 88%; /*the biggest percentage possibel before a scroll bar is needed*/
     /* padding-bottom: 109px; */
-    padding-bottom: 109px;
+    padding-bottom: 17px;/*Original value was 109px*/
 }
 
 /*→←*/
