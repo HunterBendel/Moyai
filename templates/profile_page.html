@@ -1,6 +1,10 @@
 <!-- This is to construct the navbar and update the active state to whatever
      page it is on. -->
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}">
   <div class="navbar">
     <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
     <a class="active" href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -21,15 +25,17 @@
 
 {% block content %}
 <title>Profile</title>
-
-<br/><br/>
-
-<strong>First Name: </strong>{{ current_user.first}}<br/>
-<strong>Last Name: </strong>{{ current_user.last}}<br/>
-<strong>Username: </strong>{{ current_user.username}}<br/>
-<strong>User Id: </strong>{{ current_user.id}}<br/>
-<strong>Email: </strong>{{ current_user.email}}<br/>
-<button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='change_password'">Change password</button>
+<body>
+  <div class="container">
+    <strong>First Name: </strong>{{ current_user.first}}<br/>
+    <strong>Last Name: </strong>{{ current_user.last}}<br/>
+    <strong>Username: </strong>{{ current_user.username}}<br/>
+    <strong>User Id: </strong>{{ current_user.id}}<br/>
+    <strong>Email: </strong>{{ current_user.email}}<br/>
+    <br>
+    <button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='change_password'">Change password</button>
+  </div>
+</body>
 
 
 {% endblock %} 

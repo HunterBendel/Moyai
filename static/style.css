@@ -105,7 +105,6 @@ body {
 } */
 
 /* Adjustments for different viewport sizes based on width and height */
-
 @media (max-width: 1024px) {
     .button-container {
         margin-top: 250px; 
