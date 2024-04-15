@@ -34,8 +34,13 @@
     <h3>New password is:</h3>
     <p>{{ new_password }}</p>
 
-    <form action="/settings">
-        <input type="submit" value="Back to settings" />
+    <!-- <form action="/settings">
+        <input type="submit" value="Back to Settings" />
+    </form> -->
+
+    <!-- ↓ I had to change this to profile page since we dont have a settings page-->
+    <form action="/profile_page">
+      <input type="submit" value="Back to Profile" />
     </form>
 
     {% endblock %}
