@@ -72,6 +72,14 @@ body {
 }
 
 /*→←*/
+.game-container h2 {
+    font-weight: 700;
+    text-align: center;
+    color: white;/*change the text color for the games from search*/
+    font-size: 45px;
+}
+
+/*→←*/
 .game h3 {
     text-align: center;
     margin: 10px 0;
