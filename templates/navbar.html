@@ -7,95 +7,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-    .navbar {
-      width: 100%;
-      background-color: #333;
-      overflow: auto;
-      position: relative; /* Added for positioning the title */
-    }
 
-    .navbar a {
-      float: left;
-      padding: 12px;
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-    }
+.navbar {
+  display: flex;                /* Enable Flexbox for the navbar */
+  align-items: center;          /* Vertically center align the child elements */
+  justify-content: space-between; /* Space out the items */
+  background-color: #333;
+  padding: 12px 20px;          /* Add padding to the left and right */
+}
 
-    .navbar a:hover {
-      background-color: #000;
-    }
+.navbar a,
+.navbar .search-container {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 12px;
+}
 
-    .navbar a.split {
-      float: right;
-      background-color: #333;
-      color: white;
-    }
+.navbar a:hover,
+.navbar .search-container button:hover {
+  background-color: #000;
+}
 
-    .navbar a.splitb {
-      float: right;
-      background-color: #333;
-      color: white;
-    }
+.active {
+  background-color: #04AA6D;
+}
 
-    .navbar a.split:hover {
-      background-color: #000;
-    }
+.moyai-title {
+  font-size: 50px; /* Adjust for desired size */
+  font-weight: bold; /* Make it bold */
+  color: white; /* Set the color */
+  text-decoration: none; /* Remove underline */
+  flex-grow: 1; /* Allow the title to grow */
+  text-align: center; /* Center the text of the title */
+}
 
-    .active {
-      background-color: #04AA6D;
-    }
+.search-container {
+  display: flex;               /* Enable Flexbox for the search container */
+  align-items: center;
+}
 
-    .moyai-title {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 50px; /* Adjust for desired size */
-      font-weight: bold; /* Make it bold */
-      color: white; /* Set the color */
-      text-decoration: none; /* Remove underline */
-    }
+.navbar input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  background-color: #ffffff; /* Set the background color to white */
+}
 
-    .search-container {
-      float: right;
-      padding: 12px;
-    }
+.navbar .search-container button {
+  padding: 6px 10px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
 
-    .navbar input[type=text] {
-      padding: 6px;
-      margin-top: 8px;
-      font-size: 17px;
-      border: none;
-      background-color: #ffffff; /* Set the background color to white */
-      color: black; /* Set the text color to black for better contrast */
-    }
+/* Media query for smaller screens */
+@media screen and (max-width: 500px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
+  .navbar a,
+  .search-container,
+  .search-container input[type=text],
+  .search-container button {
+    width: 100%; /* Full width for smaller screens */
+  }
 
-    .navbar .search-container button {
-      float: right;
-      padding: 6px 10px;
-      margin-top: 8px;
-      background: #ddd;
-      font-size: 17px;
-      border: none;
-      cursor: pointer;
-    }
+  .moyai-title {
+    order: 0; /* Ensure the title is at the top on smaller screens */
+  }
 
-    .navbar .search-container button:hover {
-      background: #ccc;
-    }
+  .search-container {
+    order: 1; /* Place search container below the title on smaller screens */
+  }
+}
 
-    @media screen and (max-width: 500px) {
-      .navbar a {
-        float: none;
-        display: block;
-      }
-    }
-      img {
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        }
     </style>
   </head>
   </html>
