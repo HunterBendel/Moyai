@@ -9,53 +9,62 @@
     <style>
 
 .navbar {
-  display: flex;                /* Enable Flexbox for the navbar */
-  align-items: center;          /* Vertically center align the child elements */
-  justify-content: space-between; /* Space out the items */
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #333;
-  padding: 12px 20px;          /* Add padding to the left and right */
+  padding: 12px 10px; /* Reduced padding */
 }
 
-.navbar a,
-.navbar .search-container {
+/* Style links in the navbar */
+.navbar a {
   color: white;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 17px; /* Reduced font size */
   padding: 12px;
+  white-space: nowrap; /* Prevent wrapping and ensure the text stays in one line */
 }
 
+/* Apply hover effect */
 .navbar a:hover,
 .navbar .search-container button:hover {
   background-color: #000;
 }
 
+/* Style for the active link */
 .active {
   background-color: #04AA6D;
 }
 
+/* Adjust the title size and alignment */
 .moyai-title {
-  font-size: 50px; /* Adjust for desired size */
-  transform: translateX(12.5%);
-  font-weight: bold; /* Make it bold */
-  color: white; /* Set the color */
-  text-decoration: none; /* Remove underline */
-  flex-grow: 1; /* Allow the title to grow */
-  text-align: center; /* Center the text of the title */
+  transform: translateX(200%);
+  font-size: 30px; /* Reduced font size for better fit */
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  /*padding: 0; /* Remove padding to avoid overflow */
+  margin: 0 auto; /* Center the title */
+  
 }
 
+/* Style the search container */
 .search-container {
-  display: flex;               /* Enable Flexbox for the search container */
+  display: flex;
   align-items: center;
 }
 
+/* Style the search input */
 .navbar input[type=text] {
   padding: 6px;
-  margin-top: 8px;
   font-size: 17px;
   border: none;
-  background-color: #ffffff; /* Set the background color to white */
+  background-color: #ffffff;
 }
 
+/* Style the search button */
 .navbar .search-container button {
   padding: 6px 10px;
   background: #ddd;
@@ -64,29 +73,100 @@
   cursor: pointer;
 }
 
-/* Media query for smaller screens */
+/* Adjustments for smaller screens */
+@media screen and (max-width: 1050px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Ensure full width for navbar items */
+  .navbar a,
+  .search-container,
+  .search-container input[type=text],
+  .search-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 2px; /* Add slight space between items */
+  }
+
+  /* Reset margins and order for the title on small screens */
+  .moyai-title {
+    transform: translateX(1%);
+    order: 0;
+    margin: 0; /* Remove margin to prevent horizontal scrolling */
+    font-size: 24px; /* Further reduce font size on very small screens */
+  }
+
+  /* Reset order for the search container on small screens */
+  .search-container {
+    order: 1;
+    margin-top: 2px; /* Add slight space between items */
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Ensure full width for navbar items */
+  .navbar a,
+  .search-container,
+  .search-container input[type=text],
+  .search-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 2px; /* Add slight space between items */
+  }
+
+  /* Reset margins and order for the title on small screens */
+  .moyai-title {
+    transform: translateX(1.5%);
+    order: 0;
+    margin: 0; /* Remove margin to prevent horizontal scrolling */
+    font-size: 24px; /* Further reduce font size on very small screens */
+  }
+
+  /* Reset order for the search container on small screens */
+  .search-container {
+    order: 1;
+    margin-top: 2px; /* Add slight space between items */
+  }
+}
+
 @media screen and (max-width: 500px) {
   .navbar {
     flex-direction: column;
     align-items: stretch;
   }
 
+  /* Ensure full width for navbar items */
   .navbar a,
   .search-container,
   .search-container input[type=text],
   .search-container button {
-    width: 100%; /* Full width for smaller screens */
+    width: 100%;
+    padding: 12px;
+    margin-top: 2px; /* Add slight space between items */
   }
 
+  /* Reset margins and order for the title on small screens */
   .moyai-title {
-    order: 0; /* Ensure the title is at the top on smaller screens */
-    transform: translateX(2.5%);
+    transform: translateX(3%);
+    order: 0;
+    margin: 0; /* Remove margin to prevent horizontal scrolling */
+    font-size: 24px; /* Further reduce font size on very small screens */
   }
 
+  /* Reset order for the search container on small screens */
   .search-container {
-    order: 1; /* Place search container below the title on smaller screens */
+    order: 1;
+    margin-top: 2px; /* Add slight space between items */
   }
 }
+
 
     </style>
   </head>
