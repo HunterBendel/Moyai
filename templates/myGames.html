@@ -1,6 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='myGames.css') }}">        
         <div class="navbar">
             <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
             <a href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -16,14 +19,12 @@
             <a class="split" href="logout"><i class="fa fa-fw fa-sign-out"></i> Log out</a>
             <a class="splitb">Welcome, {{ name }}</a>
         </div>
-        
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
 {% extends 'base.html' %}
 
 {% block content %}
 <body>
-    <h1 style="text-align: center;">My Game Library</h1>
+    <h1 class = "h1-title">My Game Library</h1>
     {% if games %}
         <div class="games-grid">
             {% for game in games %}
@@ -38,5 +39,5 @@
         <p>You don't have any games in your library. Go add some!</p>
     {% endif %}
 </body>
-</html>
+
 {% endblock %}
