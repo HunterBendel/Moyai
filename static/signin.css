@@ -1,21 +1,45 @@
-body {
+/*→This is the custom font←*/
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*→This is to allow the buttons to be centered and stacked←*/
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 250px;
+  margin-bottom: 250px;
+  padding: 0;
+  transition: margin-top 0.3s ease; /* Smooth transition for margin-top */
+}
+
+.container {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  transition: margin-top 0.3s ease; /* Smooth transition for margin-top */
 }
 
 .form-signin {
+  background-color: #FFFFFF80;
+  border-radius: 10px;
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
 }
+
 .form-signin .checkbox {
   font-weight: normal;
 }
+
 .form-signin .form-control {
   position: relative;
   height: auto;
@@ -25,9 +49,11 @@ body {
   padding: 10px;
   font-size: 16px;
 }
+
 .form-signin .form-control:focus {
   z-index: 2;
 }
+
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -38,3 +64,63 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 } 
+
+@media (max-width: 1024px) {
+  .container {
+    margin-top: 250px; 
+  }
+}
+
+@media (max-width: 896px) {
+  .container {
+    margin-top: 225px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 200px; 
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    margin-top: 175px; 
+  }
+}
+/*meowmeowmeow*/
+@media (max-height: 1024px) {
+  .container {
+    margin-top: 200px; 
+  }
+}
+
+@media (max-height: 896px) {
+  .container {
+    margin-top: 150px; 
+  }
+}
+
+@media (max-height: 768px) {
+  .container {
+    margin-top: 100px; 
+  }
+}
+
+@media (max-height: 640px) {
+  .container {
+    margin-top: 50px; 
+  }
+}
+
+@media (max-height: 512px) {
+  .container {
+      margin-top: 0px; 
+  }
+}
+
+@media (max-height: 384px) {
+  .container {
+      margin-top: -50px; 
+  }
+}

@@ -1,97 +1,173 @@
  <html>
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='navbar.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-    .navbar {
-      width: 100%;
-      background-color: #333;
-      overflow: auto;
-      position: relative; /* Added for positioning the title */
-    }
 
-    .navbar a {
-      float: left;
-      padding: 12px;
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-    }
+.navbar {
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 12px 10px; /* Reduced padding */
+}
 
-    .navbar a:hover {
-      background-color: #000;
-    }
+/* Style links in the navbar */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 17px; /* Reduced font size */
+  padding: 12px;
+  white-space: nowrap; /* Prevent wrapping and ensure the text stays in one line */
+}
 
-    .navbar a.split {
-      float: right;
-      background-color: #333;
-      color: white;
-    }
+/* Apply hover effect */
+.navbar a:hover,
+.navbar .search-container button:hover {
+  background-color: #000;
+}
 
-    .navbar a.splitb {
-      float: right;
-      background-color: #333;
-      color: white;
-    }
+/* Style for the active link */
+.active {
+  background-color: #04AA6D;
+}
 
-    .navbar a.split:hover {
-      background-color: #000;
-    }
+/* Adjust the title size and alignment */
+.moyai-title {
+  transform: translateX(200%);
+  font-size: 30px; /* Reduced font size for better fit */
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  /*padding: 0; /* Remove padding to avoid overflow */
+  margin: 0 auto; /* Center the title */
+  
+}
 
-    .active {
-      background-color: #04AA6D;
-    }
+/* Style the search container */
+.search-container {
+  display: flex;
+  align-items: center;
+}
 
-    .moyai-title {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 50px; /* Adjust for desired size */
-      font-weight: bold; /* Make it bold */
-      color: white; /* Set the color */
-      text-decoration: none; /* Remove underline */
-    }
+/* Style the search input */
+.navbar input[type=text] {
+  padding: 6px;
+  font-size: 17px;
+  border: none;
+  background-color: #ffffff;
+}
 
-    .search-container {
-      float: right;
-      padding: 12px;
-    }
+/* Style the search button */
+.navbar .search-container button {
+  padding: 6px 10px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
 
-    .navbar input[type=text] {
-      padding: 6px;
-      margin-top: 8px;
-      font-size: 17px;
-      border: none;
-      background-color: #ffffff; /* Set the background color to white */
-      color: black; /* Set the text color to black for better contrast */
-    }
+/* Adjustments for smaller screens */
+@media screen and (max-width: 1050px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Ensure full width for navbar items */
+  .navbar a,
+  .search-container,
+  .search-container input[type=text],
+  .search-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 2px; /* Add slight space between items */
+  }
+
+  /* Reset margins and order for the title on small screens */
+  .moyai-title {
+    transform: translateX(1%);
+    order: 0;
+    margin: 0; /* Remove margin to prevent horizontal scrolling */
+    font-size: 24px; /* Further reduce font size on very small screens */
+  }
+
+  /* Reset order for the search container on small screens */
+  .search-container {
+    order: 1;
+    margin-top: 2px; /* Add slight space between items */
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Ensure full width for navbar items */
+  .navbar a,
+  .search-container,
+  .search-container input[type=text],
+  .search-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 2px; /* Add slight space between items */
+  }
+
+  /* Reset margins and order for the title on small screens */
+  .moyai-title {
+    transform: translateX(1.5%);
+    order: 0;
+    margin: 0; /* Remove margin to prevent horizontal scrolling */
+    font-size: 24px; /* Further reduce font size on very small screens */
+  }
+
+  /* Reset order for the search container on small screens */
+  .search-container {
+    order: 1;
+    margin-top: 2px; /* Add slight space between items */
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Ensure full width for navbar items */
+  .navbar a,
+  .search-container,
+  .search-container input[type=text],
+  .search-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 2px; /* Add slight space between items */
+  }
+
+  /* Reset margins and order for the title on small screens */
+  .moyai-title {
+    transform: translateX(3%);
+    order: 0;
+    margin: 0; /* Remove margin to prevent horizontal scrolling */
+    font-size: 24px; /* Further reduce font size on very small screens */
+  }
+
+  /* Reset order for the search container on small screens */
+  .search-container {
+    order: 1;
+    margin-top: 2px; /* Add slight space between items */
+  }
+}
 
 
-    .navbar .search-container button {
-      float: right;
-      padding: 6px 10px;
-      margin-top: 8px;
-      background: #ddd;
-      font-size: 17px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .navbar .search-container button:hover {
-      background: #ccc;
-    }
-
-    @media screen and (max-width: 500px) {
-      .navbar a {
-        float: none;
-        display: block;
-      }
-    }
-      img {
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        }
     </style>
   </head>
   </html>

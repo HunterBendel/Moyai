@@ -1,0 +1,50 @@
+/*→This is the custom font←*/
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*→This is to adjust the content of the body←*/
+body {
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    background-attachment: fixed; /* Keeps the image fixed during scrolling */
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 150%;
+    text-align: center;
+    position: relative;
+    margin: 0;
+    flex-direction: column;
+    padding: 0;
+    min-height: 88%; /*the biggest percentage possibel before a scroll bar is needed*/
+    /* padding-bottom: 109px; */
+    padding-bottom: 17px;/*Original value was 109px*/
+}
+
+.container {
+    background-color: #FFFFFF80;
+    transition: margin-top 0.3s ease; /* Smooth transition for margin-top */
+    border-radius: 10px;
+    max-width: 500px;
+    font-size: 175%;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+footer {
+    width: 100%;
+    height: 40px; /* Set the height of your footer */
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    line-height: 0px; /* Center the text vertically */
+    position: absolute; /* Adjusts position to absolute */
+    bottom: 0%; /* Positions the footer at the bottom of the page */
+}

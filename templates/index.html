@@ -1,4 +1,7 @@
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <div class="navbar">
     <a class="splitb">Not signed in</a>
   </div>
@@ -11,11 +14,14 @@
 <body>
   <title>Moyai</title>
   <link rel="stylesheet" href="style.css">
-  <p> You may either
-    <a class="btn btn-lg btn-primary btn-block" href="signup" role="button">Sign up</a>
-    or
-    <a class="btn btn-lg btn-primary btn-block" href="login" role="button">Log in</a>
-  </p>
+  <div class="button-container">
+    <div class="main-title">Welcome to Moyai!</div>
+    <button type="button1" class="btn btn-lg btn-primary btn-block" onclick="location.href='signup';">Sign up</button>
+    
+    <button type="button2" class="btn btn-lg btn-primary btn-block" onclick="location.href='login';">Log in</button>
+  </div>
 </body>
 
 {% endblock %} 
+
+

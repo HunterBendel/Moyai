@@ -1,5 +1,8 @@
 {% include 'navbar.html' %}
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Moyai</title>
     <script src="https://unpkg.com/tko/dist/tko.es6.min.js"></script>
@@ -21,31 +24,22 @@
     </div>
 </head>
 <body>
-<hr>
-
-{% block app_content %}
+  <div class="container">
+    {% block app_content %}
     <h1>Password {{ title }}</h1>
     <h3>New password is:</h3>
     <p>{{ new_password }}</p>
 
     <form action="/profile">
-        <input type="submit" value="Back to profile" />
+      <input type="submit" value="Back to Profile" />
     </form>
 
-
-{% endblock %}
+    {% endblock %}
+  </div>
+</body> 
 
 <footer>
-    <style> footer {
-      background-color: #555;
-      color: #fff;
-      text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-  }</style>
       <p>&copy; 2024 Moyai App. All rights reserved.</p>
-  </footer>
+</footer>
 
-</body> 
+

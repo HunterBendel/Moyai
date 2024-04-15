@@ -123,7 +123,7 @@ def signup():
 @app.route('/changed/<title>/<new_password>')
 @login_required
 def page_changed(title, new_password=''):
-    return render_template('changed.html', title=title, new_password=new_password)
+    return render_template('changed.html', title=title, new_password=new_password, name=current_user.username)
 
 @app.route('/change_password', methods=['GET', 'POST'])
 @login_required
@@ -141,8 +141,7 @@ def page_change_password():
         return redirect(url_for('page_change_password'))
     password_template = flask_change_password.change_password_template(form, submit_text='Change')
     return render_template('change_password.html', password_template=password_template, title=title, form=form,
-                           user=dict(username=current_user.username),
-                           )
+                           user=dict(username=current_user.username), name=current_user.username)
 
 @app.route('/search')
 def search():
