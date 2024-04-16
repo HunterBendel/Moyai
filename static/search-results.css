@@ -1,3 +1,6 @@
+/* A CSS file for styling your website */
+/* General Styles */
+
 /*→This is the custom font←*/
 .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;
@@ -5,8 +8,32 @@
     font-style: normal;
 }
 
+/*→This is to make the buttons have the font and be bigger←*/
+.btn {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 250%;
+}
+
+/*→This is to allow the buttons to be centered and stacked←*/
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 250px;
+    margin-bottom: 250px;
+    padding: 0;
+    transition: margin-top 0.3s ease; /* Smooth transition for margin-top */
+}
+
+/*→This is to reduce the gap BETWEEN the buttons←*/
+.button-container button + button {
+    margin-top: 20px; 
+}
+
 /*→This is to adjust the content of the body←*/
 body {
+    background-image: url('/static/images/moyai_background.jpg');
     background-size: cover; /* Ensures the image covers the entire element */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents repeating the image */
@@ -23,19 +50,219 @@ body {
     padding-bottom: 17px;/*Original value was 109px*/
 }
 
-.container {
-    background-color: #FFFFFF80;
-    transition: margin-top 0.3s ease; /* Smooth transition for margin-top */
-    border-radius: 10px;
-    max-width: 500px;
-    font-size: 175%;
+/*→←*/
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/*→←*/
+.game {
+    background-color: #80808080;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/*→←*/
+.game img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/*→←*/
+.game-container h2 {
+    font-weight: 700;
     text-align: center;
+    /*color: white;/*change the text color for the games from search*/
+    font-size: 45px;
+}
+
+/*→←*/
+.game h3 {
+    text-align: center;
+    margin: 10px 0;
+    color: white;/*change the text color for the games from search*/
+}
+
+/*→←*/
+.game a {
+    display: block;
+    text-align: center;
+    background-color: #04AA6D;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+/*→Adjust the properties based on window size←*/
+/* @media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr); //Two columns on medium screens
+    }
+
+} */
+
+/*→Adjust the properties based on the window size←*/
+/* @media (max-width: 480px) {
+    .games-grid {
+        grid-template-columns: 1fr; //One column on small screens 
+    }
+} */
+
+/* Adjustments for different viewport sizes based on width and height */
+@media (max-width: 1024px) {
+    .button-container {
+        margin-top: 250px; 
+    }
+}
+
+@media (max-width: 896px) {
+    .button-container {
+        margin-top: 225px;
+    }
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        margin-top: 200px;
+    }
+}
+
+@media (max-width: 640px) {
+    .button-container {
+        margin-top: 175px; 
+    }
+}
+/*meowmeowmeow*/
+@media (max-height: 1024px) {
+    .button-container {
+        margin-top: 250px; 
+    }
+}
+
+@media (max-height: 896px) {
+    .button-container {
+        margin-top: 200px;
+    }
+}
+
+@media (max-height: 768px) {
+    .button-container {
+        margin-top: 150px;
+    }
+}
+
+@media (max-height: 640px) {
+    .button-container {
+        margin-top: 100px; 
+    }
+}
+
+@media (max-height: 512px) {
+    .button-container {
+        margin-top: 50px; 
+    }
+    .button-container {
+        display: inline;
+    }
+}
+
+@media (max-height: 384px) {
+    .button-container {
+        margin-top: 0px; 
+    }
+    .button-container {
+        display: inline;
+    }
+}
+
+/*→Create header navbar←*/
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/*→←*/
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/*→←*/
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+/*→←*/
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*→←*/
+main {
+    padding: 20px;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 20px;
+}
+
+section h2 {
+    color: #333;
+}
+
+/* Search Section */
+#search {
+    text-align: center;
+}
+
+#search input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#search button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
+/* footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0px;
+    margin-top: auto;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    flex-direction: column;
+    display: flex;
     align-items: center;
-    align-content: center;
-    padding: 15px;
-    margin: 0 auto;
-    margin-top: 100px;
-    margin-bottom: 50px;
+} */
+
+.main-title {
+    font-size: 500%;
 }
 
 footer {

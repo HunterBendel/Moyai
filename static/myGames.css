@@ -23,6 +23,11 @@ body {
     padding-bottom: 17px;/*Original value was 109px*/
 }
 
+.h1-title {
+    text-align: center;
+    color: white;
+}
+
 .container {
     background-color: #FFFFFF80;
     transition: margin-top 0.3s ease; /* Smooth transition for margin-top */
@@ -36,10 +41,6 @@ body {
     margin: 0 auto;
     margin-top: 100px;
     margin-bottom: 50px;
-}
-
-.container h2 {
-    color: black;
 }
 
 footer {

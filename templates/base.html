@@ -8,14 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     {% include 'navbar.html' %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search-results.css') }}">
 </head>
 <body>
-    <div class="container">
+    <div class="game-container">
         {% block content %}
         {% endblock %}
     </div>
-
+    <br>
 </body>
 <footer>
     <p>&copy; 2024 Moyai App. All rights reserved.</p>
