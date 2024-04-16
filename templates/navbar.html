@@ -38,17 +38,18 @@
   background-color: #04AA6D;
 }
 
-/* Adjust the title size and alignment */
 .moyai-title {
-  transform: translateX(200%);
-  font-size: 60px; /* Reduced font size for better fit */
+  font-size: 60px;
   font-weight: bold;
   color: white;
   text-decoration: none;
-  /*padding: 0; /* Remove padding to avoid overflow */
-  margin: 0 auto; /* Center the title */
-  
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  transform: translateX(70px); /* Adjust this value as needed */
 }
+
 
 /* Style the search container */
 .search-container {
@@ -73,11 +74,8 @@
   cursor: pointer;
 }
 
-/* Adjustments for screens wider than 1624px */
-/* Adjustments for screens at 1624px */
-/* Adjustments for screens at 1624px */
-/* Adjustments for screens at 1624px */
-@media screen and (max-width: 1624px) {
+
+@media screen and (max-width: 1350px) {/*1624*/
   .navbar {
     flex-direction: column; /* Stack navbar items vertically */
     align-items: center; /* Align items in the center */
@@ -111,72 +109,27 @@
   }
 }
 
-
-
-
-
-/* Adjustments for smaller screens */
-@media screen and (max-width: 1050) {
-  .navbar {
-    flex-direction: column;
-    align-items: stretch;
+@media screen and (max-width: 1350px) {/*1623*/
+  .moyai-title {
+    text-align: center; /* Center the title text */
+    width: 100%; /* Set the width to full to avoid text shifting */
+    /* Ensure there's no transform or margin altering the title position */
+    transform: none;
+    margin: 0 auto;
+    font-size: 50px;
   }
-
-  /* Ensure full width for navbar items */
+  /* Ensure that other elements are also properly aligned */
   .navbar a,
   .search-container,
   .search-container input[type=text],
   .search-container button {
+    /* Adjust styles as needed so everything is centered */
     width: 100%;
     padding: 12px;
     margin-top: 2px; /* Add slight space between items */
   }
-
-  /* Reset margins and order for the title on small screens */
-  .moyai-title {
-    transform: translateX(1%);
-    order: 0;
-    margin: 0; /* Remove margin to prevent horizontal scrolling */
-    font-size: 60px; /* Further reduce font size on very small screens */
-  }
-
-  /* Reset order for the search container on small screens */
-  .search-container {
-    order: 1;
-    margin-top: 2px; /* Add slight space between items */
-  }
 }
 
-@media screen and (max-width: 775px) {
-  .navbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  /* Ensure full width for navbar items */
-  .navbar a,
-  .search-container,
-  .search-container input[type=text],
-  .search-container button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 2px; /* Add slight space between items */
-  }
-
-  /* Reset margins and order for the title on small screens */
-  .moyai-title {
-    transform: translateX(1.5%);
-    order: 0;
-    margin: 0; /* Remove margin to prevent horizontal scrolling */
-    font-size: 55px; /* Further reduce font size on very small screens */
-  }
-
-  /* Reset order for the search container on small screens */
-  .search-container {
-    order: 1;
-    margin-top: 2px; /* Add slight space between items */
-  }
-}
 
 @media screen and (max-width: 300px) {
   .navbar {
