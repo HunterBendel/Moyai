@@ -75,7 +75,7 @@ body {
 .game-container h2 {
     font-weight: 700;
     text-align: center;
-    color: white;/*change the text color for the games from search*/
+    /*color: white;/*change the text color for the games from search*/
     font-size: 45px;
 }
 
