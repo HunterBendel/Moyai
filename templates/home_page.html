@@ -4,6 +4,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home_page.css') }}">
   <div class="navbar">
     <a class="active" href="home"><i class="fa fa-fw fa-home"></i> Home</a>
     <a href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -35,7 +36,7 @@ static/images/moyai_logo.png
   <title>Home</title>
   <main>
       <section id="recommendations">
-          <h2>Recommended Games</h2>
+          <h2 style="color:white;">Recommended Games</h2>
           <div class="games-grid">
             {% for game in recommended_games %}
                 <div class="game">
@@ -49,7 +50,7 @@ static/images/moyai_logo.png
       </section>
 
       <section id="news">
-          <h2>Latest Gaming News</h2>
+          <h2 style="color:white;">Latest Gaming News</h2>
           <div id="gaming-news">
               <!-- Latest gaming news will be displayed here -->
           </div>
