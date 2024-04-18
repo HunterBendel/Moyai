@@ -13,8 +13,13 @@ from flask_change_password import ChangePassword, ChangePasswordForm
 from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
+from recommendations import recommend_games
 from vendors import get_game_deals
 from youtube_embed import get_youtube_trailer_url
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+import pandas as pd
+from recommendations import get_recommendations
 
 app = Flask(__name__)  # Create application object
 app.config['SECRET_KEY'] = 'This is my super secret key'
@@ -52,6 +57,17 @@ class Game(db.Model):
     name = db.Column(db.String(100), nullable=False)
     cover_image_url = db.Column(db.String(255), nullable=True)
 
+def extract_user_game_data():
+    # This query joins User and UserGame to fetch which games each user has
+    user_game_query = db.session.query(
+        UserGame.user_id,
+        UserGame.game_id
+    ).join(User).all()
+
+    # Convert the query result to a pandas DataFrame
+    data = pd.DataFrame(user_game_query, columns=['user_id', 'game_id'])
+    return data
+
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
@@ -75,7 +91,12 @@ def index():
 @app.route('/home')
 @login_required
 def home():
-    return render_template('home_page.html', name=current_user.username)
+    user_id = current_user.id
+    data = extract_user_game_data()  # Assumes this function fetches data as shown previously
+    recommended_game_ids = get_recommendations(user_id, data)
+    # Fetch game details from the database
+    games = db.session.query(Game).filter(Game.id.in_(recommended_game_ids)).all()
+    return render_template('home_page.html', name=current_user.username, recommended_games=games)
 
 @app.route('/profile')
 @login_required
@@ -238,7 +259,6 @@ def myGames():
     # Fetch games from the user_game association table joined with the game table
     user_games = db.session.query(Game).join(UserGame, UserGame.game_id == Game.id).filter(UserGame.user_id == user_id).all()
     return render_template('myGames.html', games=user_games, name=current_user.username)
-
 
 @app.route('/logout')
 @login_required
