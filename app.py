@@ -13,6 +13,7 @@ from flask_change_password import ChangePassword, ChangePasswordForm
 from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
+from game_description import get_steam_game_description
 from recommendations import recommend_games
 from vendors import get_game_deals
 from youtube_embed import get_youtube_trailer_url
@@ -193,6 +194,8 @@ def game_details():
         else:
             return 'Game not found', 404  # Or redirect to another appropriate error handling page
     youtube_trailer_url = get_youtube_trailer_url(game_name, 'AIzaSyDhDfW13uJDS1DRgSplLwDLTbvLF_x3New')
+    game_description = get_steam_game_description(game_name)
+    print(game_description)
     current_price, highest_price, lowest_price = lowest_price_history(game_name)
     total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
     ign_score = get_ign_score(game_name)
@@ -204,6 +207,7 @@ def game_details():
                                 game_name=game_name, 
                                 cover_image_url=cover_image_url, 
                                 name=current_user.username,
+                                game_description=game_description,
                                 current_price=current_price,
                                 highest_price=highest_price,
                                 lowest_price=lowest_price,
