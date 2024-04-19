@@ -14,6 +14,7 @@ from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
 from game_description import get_steam_game_description
+from misc_details import get_steam_game_details
 from recommendations import recommend_games
 from vendors import get_game_deals
 from youtube_embed import get_youtube_trailer_url
@@ -200,6 +201,7 @@ def game_details():
     total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
     ign_score = get_ign_score(game_name)
     deals = get_game_deals(game_name)
+    game_info = get_steam_game_details(game_name)
     game_details = db.session.query(Game).filter_by(id=game_id).first()
     if game_details:
         return render_template('game-details.html', 
@@ -219,7 +221,8 @@ def game_details():
                                 youtube_trailer_url=youtube_trailer_url,
                                 deals=deals,
                                 game=game_details,
-                                game_in_library=game_in_library)  # Add this to pass the library status to the template
+                                game_in_library=game_in_library,
+                                game_info=game_info)  # Add this to pass the library status to the template
     else:
         return 'Game not found', 404
 
