@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='game-details.css') }}">
     <div class="navbar">
       <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
       <a href="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -17,7 +21,7 @@
       <a class="splitb">Welcome, {{ name }}</a>
   </div>
   <title>Game Details</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 {% extends 'base.html' %}
@@ -26,56 +30,72 @@
 <body>
     <main>
         <section id="game-info">
-            <h2>{{ game_name }}</h2>
             {% if game_in_library %}
-                <form action="{{ url_for('remove_from_library', game_id=game.id) }}" method="post">
-                    <button type="submit">Remove from Library</button>
-                </form>
+            <form action="{{ url_for('remove_from_library', game_id=game.id) }}" method="post">
+                <button type="submit" class="pretty-button remove">Remove from Library</button>
+            </form>
             {% else %}
-                <form action="{{ url_for('add_to_library', game_id=game.id) }}" method="post">
-                    <button type="submit">Add to Library</button>
-                </form>
+            <form action="{{ url_for('add_to_library', game_id=game.id) }}" method="post">
+                <button type="submit" class="pretty-button">Add to Library</button>
+            </form>
             {% endif %}
-            <img src="{{ cover_image_url }}" alt="{{ game_name }} cover image">
-            <p><strong>Trailer:</strong></p>
+        
+            <br>
+            <h2>{{ game_name }}</h2>
+            <img class="adapt-image" src="{{ cover_image_url }}" alt="{{ game_name }} cover image">
+            <br>
+            <h2 class="center-text"><strong>Trailer:</strong></h2>
             {% if youtube_trailer_url %}
-                <iframe width="560" height="315" src="{{ youtube_trailer_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="adapt-image adjust-video" src="{{ youtube_trailer_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             {% else %}
-                <p>Trailer not available.</p>
-            {% endif %}         
-            <section id="game-description">
-                <h2>Description</h2>
-                <div>{{ game_description | safe }}</div>
-            </section>            
-            <p><strong>Tags:</strong> Placeholder Tags</p>
-            <p><strong>Developer:</strong> Placeholder Developer</p>
-            <p><strong>Publisher:</strong> Placeholder Publisher</p>
-            <p><strong>Release Date:</strong> Placeholder Release Date</p>
-            <p><strong>Current Retail Price:</strong> {{ current_price }}</p>
-            <p><strong>Highest Historical Price:</strong> {{ highest_price }}</p>
-            <p><strong>Lowest Historical Price:</strong> {{ lowest_price }}</p>
-            <section id="game-vendors">
-                <h3>Current Deals</h3>
-                {% if deals %}
-                    <ul>
-                        {% for deal in deals %}
-                            <li><a href="{{ deal.dealUrl }}" target="_blank">{{ deal.store }}</a> - ${{ deal.salePrice }}</li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>No active deals! Check back tomorrow!</p>
-                {% endif %}
-            </section>
-            <p><strong>Current Number of In-Game Players:</strong> {{ total_ingame }}</p>
-            <p><strong>Upvotes:</strong> {{ total_upvote }}</p>
-            <p><strong>Downvotes:</strong> {{ total_downvote }}</p>
-            <p><strong>This percentage of players love the game:</strong> {{ upvote_percentage }}</p>
-            <p><strong>IGN Score: {{ ign_score }}</p>
-            <p><strong>Latest Updates:</strong> Placeholder news</p>
-            <p><strong>Minimum System Requirements:</strong></p>
-                <p>Placeholder Requirements</p>
-            <p><strong>Recommended System Requirements:</strong></p>
-                <p>Placeholder Requirements</p>
+                <p class="center-text">Trailer not available.</p>
+            {% endif %}
+            
+            <div class="parent">
+                <div class="div1"><h3><u><strong>General Info</strong></u></h3>
+                    <section id="game-description">
+                        <h2>Description</h2>
+                        <div>{{ game_description | safe }}</div>
+                    </section>            
+                    <p><strong>Tags:</strong> Placeholder Tags</p>
+                    <p><strong>Developer:</strong> Placeholder Developer</p>
+                    <p><strong>Publisher:</strong> Placeholder Publisher</p>
+                    <p><strong>Release Date:</strong> Placeholder Release Date</p>
+                </div>
+                <div class="div2"><h3><u><strong>Prices</strong></u></h3>
+                    <p><strong>Current Retail Price:</strong> {{ current_price }}</p>
+                    <p><strong>Highest Historical Price:</strong> {{ highest_price }}</p>
+                    <p><strong>Lowest Historical Price:</strong> {{ lowest_price }}</p>
+
+                    <section id="game-vendors">
+                        <h3><u><strong>Current Deals</strong></u></h3>
+                        {% if deals %}
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                {% for deal in deals %}
+                                    <li><a href="{{ deal.dealUrl }}" target="_blank">{{ deal.store }}</a> - ${{ deal.salePrice }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No active deals! Check back tomorrow!</p>
+                        {% endif %}
+                    </section>
+                    
+                </div>
+                <div class="div3"><h3><u><strong>Popularity</strong></u></h3>
+                    <p><strong>IGN Score: {{ ign_score }}</p>
+                    <p><strong>Current Number of In-Game Players:</strong> {{ total_ingame }}</p>
+                    <p><strong>Upvotes:</strong> {{ total_upvote }}</p>
+                    <p><strong>Downvotes:</strong> {{ total_downvote }}</p>
+                    <p><strong>This percentage of players love the game:</strong> {{ upvote_percentage }}</p>
+                </div>
+                <div class="div4"><h3><u><strong>Required Specs</strong></u></h3>
+                    <p><strong>Latest Updates:</strong> Placeholder news</p>
+                    <p><strong>Minimum System Requirements:</strong></p>
+                        <p>Placeholder Requirements</p>
+                    <p><strong>Recommended System Requirements:</strong></p>
+                        <p>Placeholder Requirements</p>
+                </div>
+            </div>
         </section>
     </main>
 </body>
