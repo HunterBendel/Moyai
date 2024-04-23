@@ -30,7 +30,3 @@ def get_steam_system_requirements(game_name):
         }
     else:
         return "System requirements not found or invalid AppID"
-
-# Example usage:
-requirements = get_steam_system_requirements('Portal 2')
-print(requirements)
