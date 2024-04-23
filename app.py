@@ -14,6 +14,7 @@ from IGNscore import get_ign_score
 from PriceHistory import lowest_price_history
 from GamePopular import game_popular
 from game_description import get_steam_game_description
+from game_news import get_latest_game_news
 from misc_details import get_steam_game_details
 from recommendations import recommend_games
 from system_requirements import get_steam_system_requirements
@@ -203,6 +204,7 @@ def game_details():
     deals = get_game_deals(game_name)
     game_info = get_steam_game_details(game_name)
     requirements = get_steam_system_requirements(game_name)
+    news = get_latest_game_news(game_name)
     game_details = db.session.query(Game).filter_by(id=game_id).first()
     if game_details:
         return render_template('game-details.html', 
@@ -224,7 +226,8 @@ def game_details():
                                 game=game_details,
                                 game_in_library=game_in_library,
                                 game_info=game_info,
-                                requirements=requirements)  # Add this to pass the library status to the template
+                                requirements=requirements,
+                                news=news)  # Add this to pass the library status to the template
     else:
         return 'Game not found', 404
 

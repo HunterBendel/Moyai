@@ -88,10 +88,22 @@
                     <p><strong>Current Number of In-Game Players:</strong> {{ total_ingame }}</p>
                     <p><strong>Upvotes:</strong> {{ total_upvote }}</p>
                     <p><strong>Downvotes:</strong> {{ total_downvote }}</p>
-                    <p><strong>This percentage of players love the game:</strong> {{ upvote_percentage }}</p>
+                    <p><strong>This percentage of players love the game:</strong> {{ upvote_percentage }}%</p>
                 </div>
                 <div class="div4"><h3><u><strong>Required Specs</strong></u></h3>
-                    <p><strong>Latest Updates:</strong> Placeholder news</p>
+                    <p><strong>Latest Updates:</strong></p>
+                    {% if news %}
+                        <ul>
+                            {% for item in news %}
+                                <li>
+                                    <h3><a href="{{ item['url'] }}" target="_blank">{{ item['title'] }}</a></h3>
+                                    <p>{{ item['contents'] }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No recent news available.</p>
+                    {% endif %}
                     <p><strong>System Requirements:</strong></p>
                         <p>{{ requirements.minimum|safe }}</p>
                         <p>{{ requirements.recommended|safe }}</p>

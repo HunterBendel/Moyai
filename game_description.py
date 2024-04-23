@@ -7,9 +7,13 @@ def get_steam_game_description(game_name):
     if api_data.status_code == 200:
         data = api_data.json()
         for app in data["applist"]["apps"]:
-            if app["name"] == game_name:
+            if app["name"].lower() == game_name.lower():
                 app_id = app["appid"]
                 break
+
+    if not app_id:
+        return "Game not found or invalid game name"
+    
     url = f"http://store.steampowered.com/api/appdetails?appids={app_id}"
     response = requests.get(url)
     data = response.json()
