@@ -55,8 +55,10 @@
                 <div class="div1"><h3><u><strong>Description</strong></u></h3>
                     <section id="game-description">
                         <div>{{ game_description | safe }}</div>
-                    </section>            
-
+                    </section>
+                    <p><strong>Developer:</strong> {{ game_info.get('developer', 'Not available') }}</p>
+                    <p><strong>Publisher:</strong> {{ game_info.get('publisher', 'Not available') }}</p>
+                    <p><strong>Release Date:</strong> {{ game_info.get('release_date', 'Not available') }}</p>
                 </div>
                 <div class="div2"><h3><u><strong>Prices</strong></u></h3>
                     <p><strong>Current Retail Price:</strong> {{ current_price }}</p>
@@ -90,10 +92,9 @@
                 </div>
                 <div class="div4"><h3><u><strong>Required Specs</strong></u></h3>
                     <p><strong>Latest Updates:</strong> Placeholder news</p>
-                    <p><strong>Minimum System Requirements:</strong></p>
-                        <p>Placeholder Requirements</p>
-                    <p><strong>Recommended System Requirements:</strong></p>
-                        <p>Placeholder Requirements</p>
+                    <p><strong>System Requirements:</strong></p>
+                        <p>{{ requirements.minimum|safe }}</p>
+                        <p>{{ requirements.recommended|safe }}</p>
                 </div>
             </div>
         </section>
