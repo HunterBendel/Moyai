@@ -44,23 +44,19 @@
             <h2>{{ game_name }}</h2>
             <img class="adapt-image" src="{{ cover_image_url }}" alt="{{ game_name }} cover image">
             <br>
-            <h2 class="center-text"><strong>Trailer:</strong></h2>
+            <h2 class="center-text"><u><strong>Trailer</strong></u></h2>
             {% if youtube_trailer_url %}
-                <iframe class="adapt-image adjust-video" src="{{ youtube_trailer_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="adapt-video" src="{{ youtube_trailer_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             {% else %}
                 <p class="center-text">Trailer not available.</p>
             {% endif %}
-            
+            <br>
             <div class="parent">
-                <div class="div1"><h3><u><strong>General Info</strong></u></h3>
+                <div class="div1"><h3><u><strong>Description</strong></u></h3>
                     <section id="game-description">
-                        <h2>Description</h2>
                         <div>{{ game_description | safe }}</div>
                     </section>            
-                    <p><strong>Tags:</strong> Placeholder Tags</p>
-                    <p><strong>Developer:</strong> Placeholder Developer</p>
-                    <p><strong>Publisher:</strong> Placeholder Publisher</p>
-                    <p><strong>Release Date:</strong> Placeholder Release Date</p>
+
                 </div>
                 <div class="div2"><h3><u><strong>Prices</strong></u></h3>
                     <p><strong>Current Retail Price:</strong> {{ current_price }}</p>
@@ -81,7 +77,11 @@
                     </section>
                     
                 </div>
-                <div class="div3"><h3><u><strong>Popularity</strong></u></h3>
+                <div class="div3"><h3><u><strong>General Info</strong></u></h3>
+                    <p><strong>Tags:</strong> Placeholder Tags</p>
+                    <p><strong>Developer:</strong> Placeholder Developer</p>
+                    <p><strong>Publisher:</strong> Placeholder Publisher</p>
+                    <p><strong>Release Date:</strong> Placeholder Release Date</p>
                     <p><strong>IGN Score: {{ ign_score }}</p>
                     <p><strong>Current Number of In-Game Players:</strong> {{ total_ingame }}</p>
                     <p><strong>Upvotes:</strong> {{ total_upvote }}</p>

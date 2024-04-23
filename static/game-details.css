@@ -44,8 +44,8 @@ body {
     font-family: "Bebas Neue", sans-serif;
 }
 
-
 .parent {
+    font-size: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -53,7 +53,7 @@ body {
 }
 
 .div1, .div2, .div3, .div4 {
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 5px rgba(255, 13, 174, 0.5);
 }
 
 .div1 { grid-area: 1 / 1 / 2 / 2; }
@@ -69,15 +69,24 @@ h2 {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 50%;
+    width: 50%;
+
+    transition: height ease 0.5;
+    transition: width ease 0.5;
 }
 
-.adjust-video {
-    width: 560px;
-    height: 315px;
+.adapt-video {
+    width: 50%;
+    height: 50%;
+
+    transition: height ease 0.5;
+    transition: width ease 0.5;
 }
 
 .center-text {
     text-align: center;
+    color: black;
 }
 
 nav ul {
@@ -129,21 +138,22 @@ footer {
     position: absolute; /* Adjusts position to absolute */
     bottom: 0%; /* Positions the footer at the bottom of the page */
 }
+  
+@media screen and (max-width: 1350px) {
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr; /* Sets the grid to a single column */
+        grid-template-rows: auto; /* Each child element takes the space it needs */
+        gap: 2%; /* Keeps the gap between grid items */
+        font-size: 75%;/*30% makes it look ok, just cant read*/
+    }
 
-@media screen and (max-width: 1350px) {/*1624*/
-    body {
-        font-size: 125%;
+    /* Adjust any child element sizes or styles as needed */
+    .adapt-image, .adapt-video {
+        width: 100%; /* Adjust width as needed */
+        height: auto; /* Keep aspect ratio */
     }
-}
-  
-@media screen and (max-width: 1350px) {/*1623*/
-    body {
-        font-size: 100%;
-    }
-}
-  
-@media screen and (max-width: 300px) {
-    body {
-        font-size: 75%;
+    .div1 {
+        min-width: 200px;
     }
 }
