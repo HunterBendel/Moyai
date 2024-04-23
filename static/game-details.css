@@ -44,8 +44,8 @@ body {
     font-family: "Bebas Neue", sans-serif;
 }
 
-
 .parent {
+    font-size: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -53,7 +53,7 @@ body {
 }
 
 .div1, .div2, .div3, .div4 {
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 5px rgba(255, 13, 174, 0.5);
 }
 
 .div1 { grid-area: 1 / 1 / 2 / 2; }
@@ -69,15 +69,24 @@ h2 {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 50%;
+    width: 50%;
+
+    transition: height ease 0.5;
+    transition: width ease 0.5;
 }
 
-.adjust-video {
-    width: 560px;
-    height: 315px;
+.adapt-video {
+    width: 50%;
+    height: 50%;
+
+    transition: height ease 0.5;
+    transition: width ease 0.5;
 }
 
 .center-text {
     text-align: center;
+    color: black;
 }
 
 nav ul {
@@ -129,21 +138,83 @@ footer {
     position: absolute; /* Adjusts position to absolute */
     bottom: 0%; /* Positions the footer at the bottom of the page */
 }
+  
+@media screen and (max-width: 1350px) {
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr; /* Sets the grid to a single column */
+        grid-template-rows: auto; /* Each child element takes the space it needs */
+        gap: 2%; /* Keeps the gap between grid items */
+        font-size: 75%;/*30% makes it look ok, just cant read*/
+    }
 
-@media screen and (max-width: 1350px) {/*1624*/
-    body {
-        font-size: 125%;
+    /* Adjust any child element sizes or styles as needed */
+    .adapt-image, .adapt-video {
+        width: 100%; /* Adjust width as needed */
+        height: auto; /* Keep aspect ratio */
+    }
+    .div1 {
+        min-width: 200px;
     }
 }
-  
-@media screen and (max-width: 1350px) {/*1623*/
-    body {
-        font-size: 100%;
+/*TEMP LAYOUT BELOW*/
+/* General Styles for the document */
+body {
+    background-image: url('/static/images/moyai_background.jpg');
+    background-size: cover; /* Covers the entire element */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background */
+    background-attachment: fixed; /* Fix background during scrolling */
+    font-family: "Bebas Neue", sans-serif; /* Custom font throughout the body */
+    font-size: 150%; /* Initial font size */
+    transition: font-size 0.3s ease; /* Smooth transition for font size changes */
+    text-align: center; /* Center text alignment */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    min-height: 100vh; /* Minimum height of the viewport */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack child elements vertically */
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four columns of equal width */
+    grid-template-rows: auto; /* Row height as per the content */
+    gap: 2%; /* Gap between grid items */
+    width: 100%; /* Full width */
+}
+
+.div1, .div2, .div3, .div4 {
+    box-shadow: 2px 2px 5px rgba(255, 13, 174, 0.5); /* Stylish box shadow */
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 1 / 3 / 2 / 4; }
+.div4 { grid-area: 1 / 4 / 2 / 5; }
+
+footer {
+    width: 100%;
+    height: 40px; /* Fixed height for the footer */
+    background-color: #333;
+    color: white;
+    text-align: center;
+    line-height: 40px; /* Vertically center the text within the footer */
+    position: relative; /* Footer will now flow in the document */
+    clear: both; /* Handle any floating elements */
+}
+
+@media screen and (max-width: 1350px) {
+    .parent {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column layout on narrow screens */
+        gap: 2%;
+        font-size: 75%; /* Smaller font size on narrower screens */
+    }
+    
+    .adapt-image, .adapt-video {
+        width: 100%; /* Full width for better responsiveness */
+        height: auto; /* Maintain aspect ratio */
     }
 }
-  
-@media screen and (max-width: 300px) {
-    body {
-        font-size: 75%;
-    }
-}
+
