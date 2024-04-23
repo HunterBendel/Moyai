@@ -1,6 +1,6 @@
 import requests
 
-def get_steam_game_details(game_name):
+def get_steam_system_requirements(game_name):
     app_id = None
     api_data = requests.get('https://api.steampowered.com/ISteamApps/GetAppList/v2/')
     if api_data.status_code == 200:
@@ -9,6 +9,7 @@ def get_steam_game_details(game_name):
             if app["name"].lower() == game_name.lower():
                 app_id = app["appid"]
                 break
+
     if not app_id:
         return "Game not found or invalid game name"
     
@@ -18,11 +19,18 @@ def get_steam_game_details(game_name):
     
     if data[str(app_id)]['success']:
         game_data = data[str(app_id)]['data']
-        details = {
-            'developer': ', '.join(game_data.get('developers', ['Not available'])),
-            'publisher': ', '.join(game_data.get('publishers', ['Not available'])),
-            'release_date': game_data['release_date']['date'] if 'release_date' in game_data and 'date' in game_data['release_date'] else 'Not available'
+        requirements = game_data.get('pc_requirements', {})
+        minimum = requirements.get('minimum', 'Minimum requirements not available')
+        recommended = requirements.get('recommended', 'Recommended requirements not available')
+        
+        # Returning system requirements as a dictionary
+        return {
+            'minimum': minimum,
+            'recommended': recommended
         }
-        return details
     else:
-        return "Game details not found or invalid AppID"
+        return "System requirements not found or invalid AppID"
+
+# Example usage:
+requirements = get_steam_system_requirements('Portal 2')
+print(requirements)

@@ -16,6 +16,7 @@ from GamePopular import game_popular
 from game_description import get_steam_game_description
 from misc_details import get_steam_game_details
 from recommendations import recommend_games
+from system_requirements import get_steam_system_requirements
 from vendors import get_game_deals
 from youtube_embed import get_youtube_trailer_url
 from sklearn.metrics.pairwise import cosine_similarity
@@ -201,6 +202,7 @@ def game_details():
     ign_score = get_ign_score(game_name)
     deals = get_game_deals(game_name)
     game_info = get_steam_game_details(game_name)
+    requirements = get_steam_system_requirements(game_name)
     game_details = db.session.query(Game).filter_by(id=game_id).first()
     if game_details:
         return render_template('game-details.html', 
@@ -221,7 +223,8 @@ def game_details():
                                 deals=deals,
                                 game=game_details,
                                 game_in_library=game_in_library,
-                                game_info=game_info)  # Add this to pass the library status to the template
+                                game_info=game_info,
+                                requirements=requirements)  # Add this to pass the library status to the template
     else:
         return 'Game not found', 404
 
