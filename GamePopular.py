@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import time
 
 def game_popular(game_name):
     app_id = None

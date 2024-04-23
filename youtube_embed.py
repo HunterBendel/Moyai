@@ -1,5 +1,4 @@
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
 
 def get_youtube_trailer_url(game_name, api_key):
     youtube = build('youtube', 'v3', developerKey=api_key)

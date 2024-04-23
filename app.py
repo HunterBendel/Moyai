@@ -1,12 +1,11 @@
 import os
 import sqlite3
-from flask import Flask, jsonify, render_template, redirect, url_for, request, flash
-from flask import session as flask_session
+from flask import Flask, jsonify, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length #if you didnt type something in the field it will alert, (there's validators for email addresses)
-from flask_sqlalchemy import SQLAlchemy, session #database
+from flask_sqlalchemy import SQLAlchemy #database
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_change_password import ChangePassword, ChangePasswordForm
@@ -16,12 +15,9 @@ from GamePopular import game_popular
 from game_description import get_steam_game_description
 from game_news import get_latest_game_news
 from misc_details import get_steam_game_details
-from recommendations import recommend_games
 from system_requirements import get_steam_system_requirements
 from vendors import get_game_deals
 from youtube_embed import get_youtube_trailer_url
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 import pandas as pd
 from recommendations import get_recommendations
 
