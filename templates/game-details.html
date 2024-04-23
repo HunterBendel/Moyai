@@ -54,12 +54,12 @@
             <div class="parent">
                 <div class="div1"><h3><u><strong>General Info</strong></u></h3>
                     <section id="game-description">
-                <h2>Description</h2>
-                <div>{{ game_description | safe }}</div>
-            </section>
-                    <p><strong>Developer:</strong> {{ game_info.developer }}</p>
-                    <p><strong>Publisher:</strong> {{ game_info.publisher }}</p>
-                    <p><strong>Release Date:</strong> {{ game_info.release_date }}</p>
+                        <h2>Description</h2>
+                        <div>{{ game_description | safe }}</div>
+                    </section>
+                    <p><strong>Developer:</strong> {{ game_info.get('developer', 'Not available') }}</p>
+                    <p><strong>Publisher:</strong> {{ game_info.get('publisher', 'Not available') }}</p>
+                    <p><strong>Release Date:</strong> {{ game_info.get('release_date', 'Not available') }}</p>
                 </div>
                 <div class="div2"><h3><u><strong>Prices</strong></u></h3>
                     <p><strong>Current Retail Price:</strong> {{ current_price }}</p>

@@ -196,7 +196,6 @@ def game_details():
             return 'Game not found', 404  # Or redirect to another appropriate error handling page
     youtube_trailer_url = get_youtube_trailer_url(game_name, 'AIzaSyDhDfW13uJDS1DRgSplLwDLTbvLF_x3New')
     game_description = get_steam_game_description(game_name)
-    print(game_description)
     current_price, highest_price, lowest_price = lowest_price_history(game_name)
     total_ingame, total_upvote, total_downvote, upvote_percentage = game_popular(game_name)
     ign_score = get_ign_score(game_name)
