@@ -77,11 +77,10 @@ h2 {
 }
 
 .adapt-video {
-    width: 50%;
-    height: 50%;
-
-    transition: height ease 0.5;
-    transition: width ease 0.5;
+    width: 75%; /* Use 100% of the container's width */
+    height: 100vh; /* Use 100% of the viewport height */
+    object-fit: contain; /* Ensure the full video is visible */
+    transition: width 0.5s ease, height 0.5s ease; /* Smooth transition for width and height adjustments */
 }
 
 .center-text {
@@ -149,15 +148,22 @@ footer {
     }
 
     /* Adjust any child element sizes or styles as needed */
-    .adapt-image, .adapt-video {
+    .adapt-image {
         width: 100%; /* Adjust width as needed */
         height: auto; /* Keep aspect ratio */
     }
+
+    .adapt-video {
+        width: 100%; /* Adjust width as needed */
+    }
+
     .div1 {
         min-width: 200px;
     }
 }
-/*TEMP LAYOUT BELOW*/
+
+/*■■■■■■■■■TEMP LAYOUT BELOW■■■■■■■■■*/
+
 /* General Styles for the document */
 body {
     background-image: url('/static/images/moyai_background.jpg');
@@ -212,9 +218,13 @@ footer {
         font-size: 75%; /* Smaller font size on narrower screens */
     }
     
-    .adapt-image, .adapt-video {
+    .adapt-image {
         width: 100%; /* Full width for better responsiveness */
         height: auto; /* Maintain aspect ratio */
+    } 
+    .adapt-video {
+        width: 100%; /* Full width for better responsiveness */
+        height: 50vh; /* Maintain aspect ratio */
     }
 }
 
