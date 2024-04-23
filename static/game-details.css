@@ -77,8 +77,8 @@ h2 {
 }
 
 .adapt-video {
-    width: 75%; /* Use 100% of the container's width */
-    height: 100vh; /* Use 100% of the viewport height */
+    width: 65%; /* Use 100% of the container's width */
+    height: 65vh; /* Use 100% of the viewport height */
     object-fit: contain; /* Ensure the full video is visible */
     transition: width 0.5s ease, height 0.5s ease; /* Smooth transition for width and height adjustments */
 }
